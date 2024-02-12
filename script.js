@@ -58,7 +58,7 @@ async function getUserLocation() {
         navigator.geolocation.getCurrentPosition(resolve, reject);
       });
       const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=1&appid=${apiKey}`
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=1&appid=${apiKey}`
       );
       const data = await response.json();
       getWeather(data[0].name);
