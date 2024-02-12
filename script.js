@@ -60,6 +60,7 @@ function getUserLocation() {
         .then((response) => response.json())
         .then((data) => {
           getWeather(data[0].name);
+          console.log(data);
         });
     });
   }
@@ -72,4 +73,14 @@ searchButton.addEventListener("click", () => {
     alert("Please enter a city name");
   }
   inputBox.value = "";
+});
+
+inputBox.addEventListener("keypress", (e) => {
+  if (e.key === "Enter" && inputBox.value !== "") {
+    getWeather(inputBox.value);
+    inputBox.value = "";
+  }
+  else if (e.key === "Enter" && inputBox.value === "") {
+    alert("Please enter a city name");
+  }
 });
