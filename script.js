@@ -53,15 +53,13 @@ async function getWeather(city) {
 
 function getUserLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      fetch(
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=1&appid=${apiKey}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          getWeather(data[0].name);
-          console.log(data);
-        });
+      );
+      const data = await response.json();
+      getWeather(data[0].name);
+      console.log(data);
     });
   }
 }
